@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        <%=typeof title == 'undefined' ? 'Siena College' : title%>
+    </title>
+
+    <!-- Viewport mobile tag for sensible mobile support -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+    <!-- Bootstrap core CSS-->
+    <link href="../styles/private/bootstrap/bootstrap.min.4.0.0.css" rel="stylesheet">
+    <!-- Custom fonts for this template-->
+    <link href="../content/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <!-- Page level plugin CSS-->
+    <link href="../styles/private/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+    <!-- Custom styles for this template-->
+    <link href="../styles/private/admin/sb-admin.css" rel="stylesheet">
+
+
+    <!--STYLES-->
+    <link rel="stylesheet" href="/styles/public/importer.css">
+    <link rel="stylesheet" href="/styles/public/laf.css">
+    <!--STYLES END-->
+</head>
+
+<body ng-app="" class="fixed-nav sticky-footer bg-dark" id="page-top">
+    <div ng-include="'../templates/miniviews/admin-nav.html'"></div>
+    <div id="wrapper">
+        <div id="page-wrapper">
+            <!-- In future Use Session to allow this Menu -->
+            <%- body %>
+        </div>
+    </div>
+
+    <footer class="sticky-footer">
+        <div class="container">
+            <div class="text-center">
+                <small>Copyright © Siena Colleges 2017</small>
+            </div>
+        </div>
+    </footer>
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fa fa-angle-up"></i>
+    </a>
+
+
+
+    <!-- JQuery JavaScript-->
+    <script src="../content/vendor/jquery/jquery.min.js"></script>
+    <!-- <script src="../content/vendor/jquery-easing/jquery.easing.min.js"></script> -->
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="../js/private/bootstrap/bootstrap.bundle.min.js"></script>
+    <!-- Page level plugin JavaScript-->
+    <script src="../js/private/datatables/jquery.dataTables.js"></script>
+    <script src="../js/private/datatables/dataTables.bootstrap4.js"></script>
+    <script src="../js/private/datatables/sb-admin-datatables.min.js"></script>
+
+    <script src="../js/private/charts/Chart.min.js"></script>
+    <script src="../js/private/charts/sb-admin-charts.min.js"></script>
+    <!-- Custom scripts for all pages-->
+    <script src="../js/public/sb-admin.min.js"></script>
+
+    <script src="/js/public/angular.min.js"></script>
+    <script src="/js/public/angular-route.min.js"></script>
+
+</body>
+
+</html>
