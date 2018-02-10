@@ -40,13 +40,13 @@ module.exports.connections = {
   * Run: npm install sails-mysql@for-sails-0.12 --save                       *
   *                                                                          *
   ***************************************************************************/
-  annualfunddb: {
-    adapter: 'sails-mysql',
+  ectrdb: {
+    adapter: 'sails-mongo',
     host: 'localhost',
-    port: 3306,
+    port: 27017,
     user: 'root', //optional
     // password: 'C9F3FAB00D90BA0FDB189D99F9AB65B406CF879A', //optional EYSr40YxUSGj8vXZ OVOdFppLeTQqzqoB
-    database: 'annualfund' //optional
+    database: 'ectr' //optional
   },
 
   /***************************************************************************

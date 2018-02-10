@@ -14,30 +14,30 @@ module.exports = {
       // required: true,
       size: 15
     },
-    fname :{
-      type:'string',
-      required:true,
-      size:20
+    fname: {
+      type: 'string',
+      required: true,
+      size: 20
     },
-    lname :{
-      type:'string',
-      required:true,
-      size:25
-    },    
-    email :{
-      type:'string',
-      email:true,
-      required:true,
+    lname: {
+      type: 'string',
+      required: true,
+      size: 25
+    },
+    email: {
+      type: 'string',
+      email: true,
+      required: true,
       // unique:true,
-      size:45
+      size: 45
     },
     // profile:{
     //   type:'string'
     // },
-    ePassword:{
-      type:'string',
-      required:true,
-    },  
+    ePassword: {
+      type: 'string',
+      required: true,
+    },
     phone: {
       type: 'string',
       required: true,
@@ -63,6 +63,6 @@ module.exports = {
     });
   },
 
-  connection: 'annualfunddb'
+  connection: 'ectrdb'
 };
 
