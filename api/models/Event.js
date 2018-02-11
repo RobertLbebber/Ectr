@@ -13,7 +13,7 @@ module.exports = {
     title: String,
     timeStamp: Date,
     body: String,
-    comments: [{ text: String, author: String, response: [{ text: String, author: String, timeStamp: Date }], timeStamp: Date, id: String, id: String }],
+    comments: [{ text: String, author: String, response: [{ text: String, author: String, timeStamp: Date }], timeStamp: Date, id: String }],
   },
 
   connection: 'ectrdb'

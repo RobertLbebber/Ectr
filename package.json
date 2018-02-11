@@ -8,6 +8,7 @@
     "angular": "^1.6.7",
     "bcrypt": "^1.0.3",
     "ejs": "^2.5.7",
+    "formidable": "^1.1.1",
     "grunt": "1.0.2",
     "grunt-contrib-clean": "1.1.0",
     "grunt-contrib-coffee": "2.0.0",
