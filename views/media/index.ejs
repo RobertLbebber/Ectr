@@ -8,19 +8,24 @@
 
       <!-- Title -->
       <h1 class="mt-4">
-        <%= event.title %>
+        <%= event.org %>
+          <a href='<%= event.weblink %>'>
+          </a>
       </h1>
 
-      <!-- Author -->
+      <!-- Cat -->
       <p class="lead">
-        by
-        <a href="#">Start Bootstrap</a>
+        Category :
+        <%= event.category %>
       </p>
 
       <hr>
 
       <!-- Date/Time -->
-      <p>Posted on January 1, 2018 at 12:00 PM</p>
+      <p>
+        <%= event.address %>,
+          <%= event.zipcode %>
+      </p>
 
       <hr>
 

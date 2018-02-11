@@ -6,29 +6,28 @@
  */
 
 module.exports = {
-    // index: function (req, res) {
-    //     var page = req.params('page');
+    index: function (req, res) {
+        var page = req.params('page');
 
-    //     Event.findOne({ id: page }).exec(function (err, event) {
-    //         if (err) {
-    //             res.send(500, { error: 'Database Error ERR#0004' });
-    //         }
-    //         res.view('media/index', { event: event });
-    //     });
-    // },
+        Event.findOne({ id: page }).exec(function (err, event) {
+            if (err) {
+                res.send(500, { error: 'Database Error ERR#0004' });
+            }
+            res.view('media/index', { event: event });
+        });
+    },
 
     create: function (req, res) {
         const mongo = require('mongodb');
         var eventId = new mongo.ObjectID();
         req.params.eId = eventId;
-        console.log(eventId);
-        Event.create(req.params.all()).exec(function (err, e) {
+        console.log(req.params.all());
+        Event.create(req.params.all()).exec(function (err, event) {
             if (err) {
                 res.send(500, { error: 'Database Error ERR#c0005' });
             }
-
-            res.view('/media/i/' + eventId);
-            // { event: event, layout: 'media/layout' });
+            res.location('media/index', { event: event });
+            res.view('media/index', { event: event, layout: '/media/layout' });
         });
     },
 

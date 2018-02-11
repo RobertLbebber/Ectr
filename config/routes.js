@@ -56,11 +56,16 @@ module.exports.routes = {
   //   locals: { layout: "media/layout.ejs" }
   // },
 
-  // 'GET /Event/i/:page': {
-  //   controller: "EventController",
-  //   action: 'index',
-  //   locals: { layout: "media/layout.ejs" }
-  // },
+  'GET /Event/i/:page': {
+    controller: "EventController",
+    action: 'index',
+    locals: { layout: "media/layout.ejs" }
+  },
+  'GET /Event/index': {
+    controller: "EventController",
+    action: 'index',
+    locals: { layout: "media/layout.ejs" }
+  },
 
   // 'GET /Event/p/:page': {
   //   controller: "EventController",
