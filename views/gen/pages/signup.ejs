@@ -15,7 +15,7 @@
       <!-- This is the brand on the left-hand side. -->
       <div class="navbar-brand">
         <a class="content/pages/navbar-brand" href="/">
-          <b class="brand">Zebra Social</b>
+          <b class="brand">Ectr</b>
         </a>
       </div>
       <div class="collapse navbar-collapse" ng-class="!navCollapsed && 'in'">
@@ -105,6 +105,11 @@
               </span>
             </div>
 
+            <div class="control-group form-group col-md-7 ">
+              <label for="exampleFormControlFile1">Profile Picture</label>
+              <input type="file" class="form-control-file" name="profilepic">
+            </div>
+
             <!-- P A S S W O R D -->
 
             <div class="control-group form-group col-md-6" ng-class="{'has-error':signup.password.$invalid &&
@@ -132,7 +137,7 @@
           </div>
 
           <br/>
-
+          <!-- <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1Alri5nE84UId5yWogeBN8FvV3s0" width="640" height="480"></iframe> -->
           <!-- Disable signup button until the form has no errors -->
           <button class="btn btn-primary btn-lg btn-block" type="submit">
             <span ng-show="!signupForm.loading">Create Account</span>
@@ -143,4 +148,65 @@
           <input type="hidden" name="_csrf" value="<%= _csrf %>" />
     </form>
   </div>
-</body>
+
+
+  <div id="map"></div>
+
+  <head>
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+                 * element that contains the map. */
+
+      #map {
+        margin-left: 12.5%;
+        margin-top: 12.5%;
+        margin-bottom: 12.5%;
+        height: 75%;
+        width: 75%;
+      }
+
+      /* Optional: Makes the sample page fill the window. */
+
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+
+  <script>
+    var map;
+    function initMap() {
+      map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 10,
+        center: new google.maps.LatLng(42.7185, -73.7522),
+        mapTypeId: 'terrain'
+      });
+
+      // Create a <script> tag and set the USGS URL as the source.
+      var script = document.createElement('script');
+      // This example uses a local copy of the GeoJSON stored at
+      // http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_week.geojsonp
+      // oob =
+      script.src = 'https://developers.google.com/maps/documentation/javascript/examples/json/earthquake_GeoJSONP.js';
+      console.log(script.src, null, 2);
+      document.getElementsByTagName('head')[0].appendChild(script);
+    }
+
+    // Loop through the results array and place a marker for each
+    // set of coordinates.
+    window.eqfeed_callback = function (results) {
+      for (var i = 0; i < results.features.length; i++) {
+        var coords = results.features[i].geometry.coordinates;
+        var latLng = new google.maps.LatLng(coords[1], coords[0]);
+        var marker = new google.maps.Marker({
+          position: latLng,
+          map: map
+        });
+      }
+    }
+  </script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCWw6LxNyKuTsQiJrwmd2hijX3cUgNniCg&callback=initMap">
+  </script>

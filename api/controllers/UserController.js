@@ -7,13 +7,30 @@
 
 module.exports = {
     'signup': function (req, res) {
+
         res.view();
     },
 
     create: function (req, res, next) {
         //Easy Way Of Creating Tuples 
+
+        const mongo = require('mongodb');
+        var imageLoc = new mongo.ObjectID();
+
+        while (!User.findOne({ imgloc: imageLoc })) {
+            imageLoc = new mongo.ObjectID();
+        }
+
+
         User.create(
-            req.params.all(), function userCreated(err, user) {
+            {
+                fname: req.param("fname"),
+                lname: req.param("lname"),
+                email: req.param("email"),
+                imgloc: req.param("imgloc"),
+                ePassword: req.param("password"),
+            }
+            , function userCreated(err, user) {
                 if (err) {
                     req.session.flash = {
                         err: err
@@ -58,7 +75,7 @@ module.exports = {
                 res.redirect('gen/signup');
                 return;
             }
-            //
+
             var bcrypt = require('bcrypt');
             bcrypt.compare(req.param('password'), user.ePassword, function (err, valid) {
                 //General Error Detection

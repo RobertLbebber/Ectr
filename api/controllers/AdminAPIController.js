@@ -21,6 +21,8 @@ module.exports = {
 
     ListUsers: function (req, res) {
         console.log("In ListUsers");
+
+
         VolunteerAPI.find({}).exec(function (err, volunteers) {
             if (err) {
                 res.send(500, { error: 'Database Error ERR#0002' });

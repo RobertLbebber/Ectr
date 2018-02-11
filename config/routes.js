@@ -41,31 +41,57 @@ module.exports.routes = {
     }
   },
 
-  'GET /admin/admin-users': {
-    controller: "AdminAPIController",
-    action: 'ListUsers',
-    skipAsset: true,
-    locals: {
-      layout: 'sb-admin-layout/admin/admin-layout.ejs'
-    }
-  },
+  // 'GET /admin/admin-users': {
+  //   controller: "AdminAPIController",
+  //   action: 'ListUsers',
+  //   skipAsset: true,
+  //   locals: {
+  //     layout: 'sb-admin-layout/admin/admin-layout.ejs'
+  //   }
+  // },
 
-  'GET /admin/:page': {
+  // 'POST /Event/createComment': {
+  //   controller: "EventController",
+  //   action: 'createComment',
+  //   locals: { layout: "media/layout.ejs" }
+  // },
+
+  // 'GET /Event/i/:page': {
+  //   controller: "EventController",
+  //   action: 'index',
+  //   locals: { layout: "media/layout.ejs" }
+  // },
+
+  // 'GET /Event/p/:page': {
+  //   controller: "EventController",
+  //   action: 'show',
+  //   locals: { layout: "media/layout.ejs" }
+  // },
+
+  // 'GET /Event/:page': {
+  //   controller: "EventController",
+  //   action: 'show',
+  //   locals: { layout: "media/layout.ejs" }
+  // },
+
+  // 'GET /admin/:page': {
+  //   controller: "AdminAPIController",
+  //   action: 'show',
+  //   skipAsset: true,
+  //   locals: {
+  //     layout: 'sb-admin-layout/admin/admin-layout.ejs'
+  //   }
+  // },
+  'GET /': {
     controller: "AdminAPIController",
     action: 'show',
-    skipAsset: true,
-    locals: {
-      layout: 'sb-admin-layout/admin/admin-layout.ejs'
-    }
-  },
-  'GET /': {
-    view: 'media/index',
+    view: 'media/home',
     locals: {
       layout: 'media/layout.ejs'
     }
   },
   // 'GET /index': { view: '/sb-admin/index.html' },
-  'GET /page': { view: 'sb-admin-layout/view-tester' },
+  // 'GET /page': { view: 'sb-admin-layout/view-tester' },
 
   /***************************************************************************
   *                                                                          *

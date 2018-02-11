@@ -1,0 +1,66 @@
+<div class="container">
+    <div class="row">
+        <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1Alri5nE84UId5yWogeBN8FvV3s0" class="control-group form-group col-md-6 float"
+            width="640" height="580 ">
+        </iframe>
+        <form action="/Event/create" method="post" id="sign-up-form" class="control-group form-group col-md-6" name="signup">
+            <div>
+                <form action="/User/create" method="post" id="sign-up-form" class="form-signin" name="signup">
+                    <h2 class="form-signin-heading" style=" margin: auto;
+                    width: 25%;" required>
+                        Events</h2>
+
+                    <div class="control-group form-group col-md-12">
+                        <label>Name of the Entity</label>
+
+                        <!-- For this input field make it required, and have a max length of 25 -->
+                        <input type="text" class="form-control" name="entity" required>
+                    </div>
+
+                    <!-- Organization -->
+
+                    <div class="control-group form-group col-md-12">
+                        <label>Organization</label>
+                        <input type="text" class="form-control" name="org" required>
+                    </div>
+                    <div class="control-group form-group col-md-12">
+                        <label>Category</label>
+                        <select name="category">
+                            <option value="shop">Shops</option>
+                            <option value="sight">Sight Seeing</option>
+                            <option value="food">Food</option>
+                            <option value="entertainment">Entertainment</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="control-group form-group col-md-12">
+                        <label>Address</label>
+                        <input type="text" class="form-control" name="address" required>
+                    </div>
+                    <div class="control-group form-group col-md-12">
+                        <label>Zipcode</label>
+                        <input type="text" class="form-control" name="zipcode" required>
+                    </div>
+                    <div class="control-group form-group col-md-12">
+                        <label>Web Link</label>
+                        <input type="text" class="form-control" name="weblink" required>
+                    </div>
+
+                    <div class="control-group form-group col-md-7 ">
+                        <label for="exampleFormControlFile1">Profile Picture</label>
+                        <input type="file" class="form-control-file" name="profilepic">
+                    </div>
+
+                    <br/>
+                    <!-- <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1Alri5nE84UId5yWogeBN8FvV3s0" width="640" height="480"></iframe> -->
+                    <!-- Disable signup button until the form has no errors -->
+                    <button class="btn btn-primary btn-lg btn-block" type="submit">
+                        <span>Submit Info</span>
+                    </button>
+
+                    <input type="hidden" name="_csrf" value="<%= _csrf %>" />
+                    <!-- </form> -->
+                </form>
+            </div>
+    </div>
+</div>
