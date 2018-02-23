@@ -10,22 +10,17 @@ module.exports = {
   attributes: {
     fname: { type: 'string' },
     lname: { type: 'string' },
-    email: { type: 'email' },
-    password: { type: 'string' },
-    wphone: { type: 'number' },
-    cphone: { type: 'number' },
-    biotext: { type: 'clob' },
-    commenthistory: { type: 'object' },
-    imgloc: { type: 'string' }
+    email: { type: 'json' },
+    userType: {
+      type: 'string',
+      enum: ['admin', 'patron', 'electr', 'dev'],
+      defaultsTo: 'patron'
+    },
+    ePassword: { type: 'string' },
   },
 
-  // toJSON: function () {
-  //   var obj = this.toObject();
-  //   delete jstring.ePassword;
-  //   return obj;
-  // },
-
   beforeCreate: function (values, next) {
+    console.log("BeforeCreate", values.password, values.confirmation);
     if (!values.password || values.password != values.confirmation) {
       return next({ err: ["Password doesn't match password Confirmation ERR#0006"] });
     }
@@ -33,6 +28,9 @@ module.exports = {
     require('bcrypt').hash(values.password, 10, function passwordEncrypter(err, ePassword) {
       if (err) { return next(err); }
       values.ePassword = ePassword;
+
+      delete values.password;
+      delete values.confirmation;
       values.online = true;
       next();
     });

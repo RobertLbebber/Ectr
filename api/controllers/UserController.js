@@ -11,59 +11,67 @@ module.exports = {
         res.view();
     },
 
+    getMe: function (req, res) {
+        // res.view('sb-admin-layout/admin/admin-users', { volunteers: volunteers });
+        if (!req.session.User) {
+            console.log(" req.session.User", req.session.User, " is not Defined")
+        }
+        res.json({ user: req.session.User });
+    },
+
     create: function (req, res, next) {
         //Easy Way Of Creating Tuples 
-
-        const mongo = require('mongodb');
-        var imageLoc = new mongo.ObjectID();
-
-        while (!User.findOne({ imgloc: imageLoc })) {
-            imageLoc = new mongo.ObjectID();
-        }
-
-
-        User.create(
-            {
-                fname: req.param("fname"),
-                lname: req.param("lname"),
-                email: req.param("email"),
-                imgloc: req.param("imgloc"),
-                ePassword: req.param("password"),
-            }
-            , function userCreated(err, user) {
-                if (err) {
-                    req.session.flash = {
-                        err: err
-                    }
-                    console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Client-Error~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-                    // req.flash('err',err.ValidationError);
-                    return res.redirect('gen/signup');
+        var fname = req.param("fname");
+        var lname = req.param("lname");
+        var email = req.param("email");
+        var password = req.param("password");
+        var confirmation = req.param("confirmation");
+        User.create({
+            fname: fname,
+            lname: lname,
+            email: { address: email },
+            password: password,
+            confirmation: confirmation,
+            fname: fname,
+        }, function userCreated(err, user) {
+            if (err) {
+                req.session.flash = {
+                    err: err
                 }
-                // res.json(user);
-                res.redirect('/User/list');
-
-                var oldDateObj = new Date();
-                var newDateOdj = new Date(oldDateObj.getTime() + 86400 * 1000);//One Day
-                req.session.cookie.expires = newDateOdj;
-                req.session.authenticated = true;
-
-                console.log(req.session);
-                req.session.User = user;
+                console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Client-Error~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+                console.log(req.session.flash.err);
+                // req.flash('err',err.ValidationError);
+                // return res.redirect('gen/signup');
             }
+            // res.json(user);
+            req.session.User = user;
+            console.log(req.session);
+            res.redirect('/');
+
+            var oldDateObj = new Date();
+            var newDateOdj = new Date(oldDateObj.getTime() + 86400 * 1000);//One Day
+            req.session.cookie.expires = newDateOdj;
+            req.session.authenticated = true;
+
+            // user.password = undefined;
+            // user.confirmation = undefined;
+
+        }
         );
     },
 
     login: function (req, res, next) {
-        console.log(req.params.all());
         if (!req.param('email') || !req.param('password')) {
             var missInput = [{ name: 'usernamePasswordRequired', message: 'You need to provide the appropriate credentials' }];
             req.session.flash = {
                 err: missInput
             }
+            console.log("Error#0001", req.session.flash.err);
+
             res.redirect('gen/signup');
             return;
         }
-        User.findOne({ email: req.param('email') }).exec(function (err, user) {
+        User.findOne({ "email.address": req.param("email") }).exec(function (err, user) {
             //General Error Detection
             if (err) { return next(err); }
             //No User Found With Email
@@ -72,10 +80,10 @@ module.exports = {
                 req.session.flash = {
                     err: missUser
                 }
+                console.log("Error#0002", req.session.flash.err);
                 res.redirect('gen/signup');
                 return;
             }
-
             var bcrypt = require('bcrypt');
             bcrypt.compare(req.param('password'), user.ePassword, function (err, valid) {
                 //General Error Detection
@@ -86,6 +94,7 @@ module.exports = {
                     req.session.flash = {
                         err: missUser
                     }
+                    console.log("Error#0003", req.session.flash.err);
                     res.redirect('gen/signup');
                     return;
                 }
@@ -96,6 +105,7 @@ module.exports = {
 
                 console.log(req.session);
                 req.session.User = user;
+                console.log(req.session.User);
                 res.redirect('/');
             });
         });

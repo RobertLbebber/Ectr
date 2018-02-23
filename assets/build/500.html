@@ -8,7 +8,6 @@
 </head>
 
 <body class="app" ng-app="MainModule" ng-controller="MainController" id="page-top">
-    <div ng-include="'./build/sidebar.html'"></div>
     <div id="loader">
         <div class="spinner"></div>
     </div>
@@ -20,6 +19,26 @@
         });</script>
     <div>
         <div ng-include="'./sidebar.html'"></div>
+        <div class="header navbar">
+            <div class="header-container">
+                <ul class="nav-left">
+                    <li>
+                        <a id="sidebar-toggle" class="sidebar-toggle" href="javascript:void(0);">
+                            <i class="ti-menu"></i>
+                        </a>
+                    </li>
+                    <li class="search-box">
+                        <a class="search-toggle no-pdd-right" href="javascript:void(0);">
+                            <i class="search-icon ti-search pdd-right-10"></i>
+                            <i class="search-icon-close ti-close pdd-right-10"></i>
+                        </a>
+                    </li>
+                    <li class="search-input">
+                        <input class="form-control" type="text" placeholder="Search..."> </li>
+                </ul>
+                <div ng-include="'./navbar.html'"></div>
+            </div>
+        </div>
     </div>
 
     <div class="pos-a t-0 l-0 bgc-white w-100 h-100 d-f fxd-r fxw-w ai-c jc-c pos-r p-30">
