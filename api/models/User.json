@@ -1,0 +1,41 @@
+{
+    "User": {
+        "fname": "string",
+        "lname": "string",
+        "email": {
+            "address": "email",
+            "category": [
+                {
+                    "name": "string",
+                    "count": "number",
+                    "mail": [
+                        {
+                            "to": "email",
+                            "cc": "email",
+                            "bcc": "email",
+                            "sent-date": "timestamp",
+                            "was-read": "boolean",
+                            "subject": "string",
+                            "message": "string"
+                        }
+                    ]
+                }
+            ]
+        },
+        "userType": "enum",
+        "ePassword": "serial-string",
+        "notify": {
+            "bell": {
+                "count": "number"
+            },
+            "mail": {
+                "count": "number"
+            }
+        },
+        "profile": {
+            "picture": {
+                "location": "string"
+            }
+        }
+    }
+}
