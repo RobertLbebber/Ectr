@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<!--page-viewer-->
+<html>
+
+<head>
+    <title>
+        Ectr
+    </title>
+
+    <!-- Viewport mobile tag for sensible mobile support -->
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
+
+    <!--Added this so the client has access to the csrf tag and it's grabbed first service side on every page -->
+    <script type="text/javascript">
+        window.SAILS_LOCALS = { _csrf: "<%= _csrf %>" };
+    </script>
+    <style>
+        /* #loader {
+            transition: all .3s ease-in-out;
+            opacity: 1;
+            visibility: visible;
+            position: fixed;
+            height: 100vh;
+            width: 100%;
+            background: #fff;
+            z-index: 90000
+        }
+
+        #loader.fadeOut {
+            opacity: 0;
+            visibility: hidden
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            position: absolute;
+            top: calc(50% - 20px);
+            left: calc(50% - 20px);
+            background-color: #333;
+            border-radius: 100%;
+            -webkit-animation: sk-scaleout 1s infinite ease-in-out;
+            animation: sk-scaleout 1s infinite ease-in-out
+        }
+
+        @-webkit-keyframes sk-scaleout {
+            0% {
+                -webkit-transform: scale(0)
+            }
+            100% {
+                -webkit-transform: scale(1);
+                opacity: 0
+            }
+        }
+
+        @keyframes sk-scaleout {
+            0% {
+                -webkit-transform: scale(0);
+                transform: scale(0)
+            }
+            100% {
+                -webkit-transform: scale(1);
+                transform: scale(1);
+                opacity: 0
+            }
+        } */
+    </style>
+    <link href="/build/style.css" rel="stylesheet">
+</head>
+
+<body ng-app="MainModule" ng-controller="MainController" id="page-top">
+    <div ng-include="'./build/sidebar.html'"></div>
+    <div ng-init="setPage('index.html')">
+        <div ng-include="activePage"></div>
+    </div>
+
+    <!-- <footer class="footer">
+        <div class="container my-5">
+            <img src="" class="mx-auto d-block" alt="">
+            <p class="m-0 text-center text-black">&copy;</p>
+        </div>
+    </footer> -->
+    <!--SCRIPTS-->
+    <script src="/js/dependencies/sails.io.js"></script>
+    <script src="/js/dependencies/angular.1.6.7.js"></script>
+    <script src="/js/dependencies/angular-toastr.js"></script>
+    <script src="/js/dependencies/compareTo.module.js"></script>
+    <script src="/js/dependencies/fontawesome.min.js"></script>
+    <script src="/js/dependencies/jquery.min.js"></script>
+    <script src="/js/public/angular-route.min.js"></script>
+    <!--SCRIPTS END-->
+
+    <script type="text/javascript" src="/build/vendor.js"></script>
+    <script type="text/javascript" src="/build/bundle.js"></script>
+
+    <script src="/js/private/controllers/MainModule.js"></script>
+    <script src="/js/private/controllers/MainController.js"></script>
+</body>
+
+</html>

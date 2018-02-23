@@ -32,86 +32,9 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
-  'GET /gen/:page': {
-    controller: "GenController",
-    action: 'show',
-    skipAsset: true,
-    locals: {
-      layout: 'gen/signin.ejs'
-    }
-  },
-
-  // 'GET /admin/admin-users': {
-  //   controller: "AdminAPIController",
-  //   action: 'ListUsers',
-  //   skipAsset: true,
-  //   locals: {
-  //     layout: 'sb-admin-layout/admin/admin-layout.ejs'
-  //   }
-  // },
-
-  // 'POST /Event/createComment': {
-  //   controller: "EventController",
-  //   action: 'createComment',
-  //   locals: { layout: "media/layout.ejs" }
-  // },
-
-  'GET /Event/i/:page': {
-    controller: "EventController",
-    action: 'index',
-    locals: { layout: "media/layout.ejs" }
-  },
-  'GET /Event/index': {
-    controller: "EventController",
-    action: 'index',
-    locals: { layout: "media/layout.ejs" }
-  },
-  'GET /Event/show': {
-    controller: "EventController",
-    action: 'show',
-    locals: { layout: "media/layout.ejs" }
-  },
-  'GET /Event/createComment': {
-    controller: "EventController",
-    action: 'createComment',
-    // view: 'media/show'
-    // view: 'back'
-  },
-  'GET /media/show': {
-    view: 'media/show',
-    locals: { layout: "media/layout.ejs" }
-  },
-
-  // 'GET /Event/p/:page': {
-  //   controller: "EventController",
-  //   action: 'show',
-  //   locals: { layout: "media/layout.ejs" }
-  // },
-
-  // 'GET /Event/:page': {
-  //   controller: "EventController",
-  //   action: 'show',
-  //   locals: { layout: "media/layout.ejs" }
-  // },
-
-  // 'GET /admin/:page': {
-  //   controller: "AdminAPIController",
-  //   action: 'show',
-  //   skipAsset: true,
-  //   locals: {
-  //     layout: 'sb-admin-layout/admin/admin-layout.ejs'
-  //   }
-  // },
-  'GET /': {
-    controller: "AdminAPIController",
-    action: 'show',
-    view: 'media/home',
-    locals: {
-      layout: 'media/layout.ejs'
-    }
-  },
-  // 'GET /index': { view: '/sb-admin/index.html' },
-  // 'GET /page': { view: 'sb-admin-layout/view-tester' },
+  "GET /": {
+    view: "page-viewer",
+  }
 
   /***************************************************************************
   *                                                                          *
