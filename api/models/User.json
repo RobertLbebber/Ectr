@@ -1,5 +1,6 @@
 {
     "User": {
+        "_id": "autoPK",
         "fname": "string",
         "lname": "string",
         "email": {
@@ -8,15 +9,13 @@
                 {
                     "name": "string",
                     "count": "number",
+                    "icon": "string",
+                    "color": "string",
+                    "bgcolor": "string",
                     "mail": [
                         {
-                            "to": "email",
-                            "cc": "email",
-                            "bcc": "email",
-                            "sent-date": "timestamp",
-                            "was-read": "boolean",
-                            "subject": "string",
-                            "message": "string"
+                            "id": "string",
+                            "was-read": "boolean"
                         }
                     ]
                 }

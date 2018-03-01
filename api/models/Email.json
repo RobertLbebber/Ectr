@@ -1,0 +1,22 @@
+{
+    "Email": [
+        {
+            "id": "autoPK",
+            "to": "email",
+            "cc": [
+                {
+                    "element": "email"
+                }
+            ],
+            "bcc": [
+                {
+                    "element": "email"
+                }
+            ],
+            "from": "email",
+            "sent-date": "autoCreatedAt",
+            "subject": "string",
+            "message": "string"
+        }
+    ]
+}

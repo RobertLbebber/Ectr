@@ -1,0 +1,22 @@
+<div class="email-content-wrapper">
+    <div class="peers ai-c jc-sb pX-40 pY-30">
+        <div class="peers peer-greed">
+            <div class="peer mR-20">
+                <img class="bdrs-50p w-3r h-3r" alt="" src="{{emailerDetails}}">
+            </div>
+            <div class="peer">
+                <small>{{email.activeEmail.sent-date}}</small>
+                <h5 class="c-grey-900 mB-5">{{(email.activeEmail.to).join(', ')}}</h5>
+            </div>
+        </div>
+        <div class="peer">
+            <a href="" class="btn btn-danger bdrs-50p p-15 lh-0" ng-click="emailReply()">
+                <i class="fa fa-reply"></i>
+            </a>
+        </div>
+    </div>
+    <div class="bdT pX-40 pY-30">
+        <h4>{{email.activeEmail.subject}}</h4>
+        {{email.activeEmail.message}}
+    </div>
+</div>

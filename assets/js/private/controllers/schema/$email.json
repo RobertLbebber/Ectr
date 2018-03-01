@@ -1,0 +1,19 @@
+{
+    "email": {
+        "showMessage": "boolean // toggles which right panel to show",
+        "rightPanel": [
+            {
+                "./email-message.html": "string // Location of the message html ",
+                "./compose.html": "string // Location of the compose html"
+            }
+        ],
+        "activeCategory": "string // stores the category for mail type",
+        "autofill": "boolean // toggles auto fill of compose.html",
+        "activeEmails": [
+            {
+                "email.json": "object // holds information for a given email"
+            }
+        ],
+        "activeEmail": "object //holds information about a given email from active emails",
+    }
+}

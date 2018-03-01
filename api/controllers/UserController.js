@@ -4,6 +4,7 @@
  * @description :: Server-side logic for managing Userapis
  * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
  */
+// const OBJECT_ID = require("bson-objectid");
 
 module.exports = {
     'signup': function (req, res) {
@@ -103,13 +104,95 @@ module.exports = {
                 req.session.cookie.expires = newDateOdj;
                 req.session.authenticated = true;
 
-                console.log(req.session);
                 req.session.User = user;
-                console.log(req.session.User);
                 res.redirect('/');
             });
         });
     },
+
+    getEmails: function (req, res) {
+
+        var emailCategory = req.param("email_category");
+        var things = [];
+        var shortname = req.session.User.email.category;
+
+        for (var key in shortname) {
+            if (shortname[key].name === emailCategory) {
+                for (var x in shortname[key].mail) {
+                    things.push(shortname[key].mail[x].id);
+                }
+            }
+        }
+
+        Email.find({ id: { $in: things } }).exec(function (err, emailDetail) {
+            res.json({ emailDetail: emailDetail });
+        });
+    },
+
+    sendEmail: function (req, res) {
+
+        var toArray = req.param("to").replace(",", " ").split(" ").filter(function (e) { return e !== '' });
+        var ccArray = req.param("cc").replace(",", " ").split(" ").filter(function (e) { return e !== '' });
+        var bccArray = req.param("bcc").replace(",", " ").split(" ").filter(function (e) { return e !== '' });
+
+        Email.create({
+            to: toArray,
+            cc: ccArray,
+            bcc: bccArray,
+            subject: req.param("subject"),
+            message: req.param("message"),
+            from: req.session.User.email.address
+        }, function emailCreated(err, email) {
+            if (err) {
+                req.session.flash = {
+                    err: err
+                }
+                console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Client-Error~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+                console.log(req.session.flash.err);
+            }
+            sails.log(email);
+            var newEmail = { id: email.id, "was-read": false };
+            var emailId = email.id;
+            var addressToAdd = [];
+
+            var rsUec = req.session.User.email.category;
+            var filteredObj = rsUec.find(function (item, i) {
+                if (item.name === "sent") {
+                    rsUec[i].mail.push(email);
+                    return i;
+                }
+            });
+
+            toArray.forEach(element => {
+                addressToAdd.push(element);
+            });
+            ccArray.forEach(element => {
+                addressToAdd.push(element);
+            });
+            bccArray.forEach(element => {
+                addressToAdd.push(element);
+            });
+
+            User.update({ "email.address": addressToAdd },
+                { $addToSet: { "email.category": newEmail } }
+            ).exec(function (err, results) {
+                console.log("Look At This", results);
+            });
+
+
+            // console.log("a", req.session.User.email.category[0].mail);
+            // console.log("b", req.session.User);
+            // console.log("c", req.session.User.id);
+            User.update({ "email.address": req.session.User.email.address },
+                { email: req.session.User.email }).exec(function (err, results) {
+                    console.log("Inside Update Lets see whats up", results);
+                });
+            res.redirect('/build/email.html');
+        });
+    },
+
+
+
 
     destroySession: function (req, res) {
         req.session.destroy();
